@@ -8,21 +8,17 @@ import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 // import { ConfirmModal } from "@/components/modals/confirm-modal";
+// import { useConfettiStore } from "@/hooks/use-confetti-store";
 
-interface ChapterActionsProps {
+interface ActionsProps {
   disabled: boolean;
   courseId: string;
-  chapterId: string;
   isPublished: boolean;
 }
 
-export const ChapterActions = ({
-  disabled,
-  courseId,
-  chapterId,
-  isPublished,
-}: ChapterActionsProps) => {
+export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
   const router = useRouter();
+  //   const confetti = useConfettiStore();
   const [isLoading, setIsLoading] = useState(false);
 
   const onClick = async () => {
@@ -30,23 +26,20 @@ export const ChapterActions = ({
       setIsLoading(true);
 
       if (isPublished) {
-        await axios.patch(
-          `/api/courses/${courseId}/chapters/${chapterId}/unpublish`
-        );
+        await axios.patch(`/api/courses/${courseId}/unpublish`);
         toast({
-          title: "Success! Chapter unpublished.",
-          description: "If this was accidental, please republish the chapter.",
+          title: "Success! Course unpublished.",
+          description: "If this was accidental, please republish the course.",
           variant: "destructive",
         });
       } else {
-        await axios.patch(
-          `/api/courses/${courseId}/chapters/${chapterId}/publish`
-        );
+        await axios.patch(`/api/courses/${courseId}/publish`);
         toast({
-          title: "Success! Chapter published.",
-          description: "If this was accidental, please unpublish the chapter.",
+          title: "Success! Course published.",
+          description: "If this was accidental, please unpublish the course.",
           variant: "success",
         });
+        // confetti.onOpen();
       }
 
       router.refresh();
@@ -65,16 +58,15 @@ export const ChapterActions = ({
     try {
       setIsLoading(true);
 
-      await axios.delete(`/api/courses/${courseId}/chapters/${chapterId}`);
+      await axios.delete(`/api/courses/${courseId}`);
 
       toast({
-        title: "Success! Chapter deleted.",
-        description:
-          "If this was accidental, please readd the chapter content.",
+        title: "Success! Course deleted.",
+        description: "If this was accidental, please recreate the course.",
         variant: "destructive",
       });
       router.refresh();
-      router.push(`/creator/courses/${courseId}`);
+      router.push(`/creator/courses`);
     } catch {
       toast({
         title: "Uh Oh! Something went wrong.",

@@ -17,27 +17,18 @@ const CoursesPage = async () => {
     return redirect("/");
   }
 
-  // const courses = await db.course.findMany({
-  //   where: {
-  //     userId,
-  //   },
-  //   orderBy: {
-  //     createdAt: "desc",
-  //   },
-  // });
+  const courses = await db.course.findMany({
+    where: {
+      userId,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 
   return (
-    <div className="p-6 flex items-center justify-start">
-      {/* <DataTable columns={columns} data={courses} /> */}
-
-      <Link
-        className={cn(buttonVariants({ variant: "default", size: "sm" }))}
-        href={"/creator/create"}
-      >
-        Create a Course
-      </Link>
-
-      <ThemeToggle />
+    <div className="p-6">
+      <DataTable columns={columns} data={courses} />
     </div>
   );
 };

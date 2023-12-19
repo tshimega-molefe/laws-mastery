@@ -70,7 +70,9 @@ export const columns: ColumnDef<Course>[] = [
       const isPublished = row.getValue("isPublished") || false;
 
       return (
-        <Badge className={cn("bg-slate-500", isPublished && "bg-sky-700")}>
+        <Badge
+          className={cn("bg-muted-foreground", isPublished && "bg-success")}
+        >
           {isPublished ? "Published" : "Draft"}
         </Badge>
       );
@@ -90,7 +92,7 @@ export const columns: ColumnDef<Course>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <Link href={`/teacher/courses/${id}`}>
+            <Link href={`/creator/courses/${id}`}>
               <DropdownMenuItem>
                 <Pencil className="h-4 w-4 mr-2" />
                 Edit

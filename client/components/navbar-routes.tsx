@@ -27,6 +27,7 @@ export const NavbarRoutes = () => {
         </div>
       )}
       <div className="flex gap-x-2 ml-auto items-center">
+        <ThemeToggle />
         {isCreatorPage || isCoursePage ? (
           <Link href="/">
             <Button size="sm" variant="ghost">
@@ -43,7 +44,6 @@ export const NavbarRoutes = () => {
           </Link>
         ) : null}
         <UserButton afterSignOutUrl="/" />
-        {/* <ThemeToggle /> */}
       </div>
     </>
   );
