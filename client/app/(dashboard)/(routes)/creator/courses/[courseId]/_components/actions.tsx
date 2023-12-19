@@ -1,14 +1,14 @@
 "use client";
 
+import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { Trash } from "lucide-react";
-import { useState } from "react";
-import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
+import { ConfirmModal } from "@/components/modals/confirm-modal";
 import { Button } from "@/components/ui/button";
-// import { ConfirmModal } from "@/components/modals/confirm-modal";
-// import { useConfettiStore } from "@/hooks/use-confetti-store";
+import { useConfettiStore } from "@/hooks/use-confetti-store";
 
 interface ActionsProps {
   disabled: boolean;
@@ -18,7 +18,7 @@ interface ActionsProps {
 
 export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
   const router = useRouter();
-  //   const confetti = useConfettiStore();
+  const confetti = useConfettiStore();
   const [isLoading, setIsLoading] = useState(false);
 
   const onClick = async () => {
@@ -39,7 +39,7 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
           description: "If this was accidental, please unpublish the course.",
           variant: "success",
         });
-        // confetti.onOpen();
+        confetti.onOpen();
       }
 
       router.refresh();
@@ -88,11 +88,11 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
       >
         {isPublished ? "Unpublish" : "Publish"}
       </Button>
-      {/* <ConfirmModal onConfirm={onDelete}>
+      <ConfirmModal onConfirm={onDelete}>
         <Button size="sm" disabled={isLoading}>
           <Trash className="h-4 w-4" />
         </Button>
-      </ConfirmModal> */}
+      </ConfirmModal>
     </div>
   );
 };

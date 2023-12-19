@@ -34,7 +34,7 @@ export const Combobox = ({ options, value, onChange }: ComboboxProps) => {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between border-muted-foreground"
+          className="w-full justify-between"
         >
           {value
             ? options.find((option) => option.value === value)?.label

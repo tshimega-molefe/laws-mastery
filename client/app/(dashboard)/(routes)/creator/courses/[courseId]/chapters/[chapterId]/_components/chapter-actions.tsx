@@ -1,13 +1,13 @@
 "use client";
 
+import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { Trash } from "lucide-react";
-import { useState } from "react";
-import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
+import { ConfirmModal } from "@/components/modals/confirm-modal";
 import { Button } from "@/components/ui/button";
-// import { ConfirmModal } from "@/components/modals/confirm-modal";
 
 interface ChapterActionsProps {
   disabled: boolean;
@@ -96,11 +96,11 @@ export const ChapterActions = ({
       >
         {isPublished ? "Unpublish" : "Publish"}
       </Button>
-      {/* <ConfirmModal onConfirm={onDelete}>
+      <ConfirmModal onConfirm={onDelete}>
         <Button size="sm" disabled={isLoading}>
           <Trash className="h-4 w-4" />
         </Button>
-      </ConfirmModal> */}
+      </ConfirmModal>
     </div>
   );
 };

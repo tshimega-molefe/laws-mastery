@@ -1,29 +1,26 @@
 "use client";
 
-import * as z from "zod";
-import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import axios from "axios";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
-import { useRouter } from "next/navigation";
 import { Chapter } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
   FormDescription,
   FormField,
   FormItem,
-  FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-// import { Editor } from "@/components/editor";
-// import { Preview } from "@/components/preview";
-import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "@/components/ui/use-toast";
+import { cn } from "@/lib/utils";
 
 interface ChapterAccessFormProps {
   initialData: Chapter;

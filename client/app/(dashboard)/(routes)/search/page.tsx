@@ -1,12 +1,12 @@
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
-// import { db } from "@/lib/db";
+import { getCourses } from "@/actions/get-courses";
+import { CoursesList } from "@/components/courses-list";
 import { SearchInput } from "@/components/search-input";
-// import { getCourses } from "@/actions/get-courses";
-// import { CoursesList } from "@/components/courses-list";
+import { db } from "@/lib/db";
 
-// import { Categories } from "./_components/categories";
+import { Categories } from "./_components/categories";
 
 interface SearchPageProps {
   searchParams: {
@@ -22,16 +22,16 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
     return redirect("/");
   }
 
-  //   const categories = await db.category.findMany({
-  //     orderBy: {
-  //       name: "asc",
-  //     },
-  //   });
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
 
-  //   const courses = await getCourses({
-  //     userId,
-  //     ...searchParams,
-  //   });
+  const courses = await getCourses({
+    userId,
+    ...searchParams,
+  });
 
   return (
     <>
@@ -39,8 +39,8 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
         <SearchInput />
       </div>
       <div className="p-6 space-y-4">
-        {/* <Categories items={categories} />
-        <CoursesList items={courses} /> */}
+        <Categories items={categories} />
+        <CoursesList items={courses} />
       </div>
     </>
   );

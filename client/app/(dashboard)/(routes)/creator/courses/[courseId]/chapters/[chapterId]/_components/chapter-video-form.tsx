@@ -1,17 +1,16 @@
 "use client";
 
-import * as z from "zod";
-import axios from "axios";
-// import MuxPlayer from "@mux/mux-player-react";
-import { Pencil, PlusCircle, Video } from "lucide-react";
-import { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
-import { useRouter } from "next/navigation";
+import MuxPlayer from "@mux/mux-player-react";
 import { Chapter, MuxData } from "@prisma/client";
-import Image from "next/image";
+import axios from "axios";
+import { Pencil, PlusCircle, Video } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import * as z from "zod";
 
+import { FileUpload } from "@/components/file-upload";
 import { Button } from "@/components/ui/button";
-// import { FileUpload } from "@/components/file-upload";
 
 interface ChapterVideoFormProps {
   initialData: Chapter & { muxData?: MuxData | null };
@@ -83,19 +82,19 @@ export const ChapterVideoForm = ({
           </div>
         ) : (
           <div className="relative aspect-video mt-2">
-            {/* <MuxPlayer playbackId={initialData?.muxData?.playbackId || ""} /> */}
+            <MuxPlayer playbackId={initialData?.muxData?.playbackId || ""} />
           </div>
         ))}
       {isEditing && (
         <div>
-          {/* <FileUpload
+          <FileUpload
             endpoint="chapterVideo"
             onChange={(url) => {
               if (url) {
                 onSubmit({ videoUrl: url });
               }
             }}
-          /> */}
+          />
           <div className="text-xs text-muted-foreground mt-4">
             Upload this chapter&apos;s video
           </div>
