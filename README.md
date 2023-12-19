@@ -38,6 +38,6 @@ Ms. Jayde Laws is a prominent figure in the fields of marketing, crypto investme
 
 3. **Run the Application:**
 
-   ```npm run dev
-
+   ```clear
+   npm run dev
    ```
