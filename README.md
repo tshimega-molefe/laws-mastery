@@ -32,12 +32,12 @@ Ms. Jayde Laws is a prominent figure in the fields of marketing, crypto investme
 
 2. **Install Dependencies:**
 
-   ```cd client
+   ```bash
    npm install
    ```
 
 3. **Run the Application:**
 
-   ```clear
+   ```bash
    npm run dev
    ```
