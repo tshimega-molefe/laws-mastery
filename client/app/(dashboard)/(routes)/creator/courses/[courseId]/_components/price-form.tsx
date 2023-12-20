@@ -4,7 +4,7 @@ import { toast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Course } from "@prisma/client";
 import axios from "axios";
-import { Pencil } from "lucide-react";
+import { Loader2, Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -51,9 +51,9 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
       toast({
-        title: "Success! Course updated.",
+        title: "Success! Course price updated.",
         description:
-          "Please ensure the course is appropriately priced in accordance with the value provided by Ms Laws.",
+          "Please ensure appropriate pricing in accordance with the value provided by Ms Laws.",
         variant: "success",
       });
       toggleEdit();
@@ -108,7 +108,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
                       type="number"
                       step="0.01"
                       disabled={isSubmitting}
-                      placeholder="Set a price for your course"
+                      placeholder="$400"
                       className="border-muted-foreground"
                       {...field}
                     />
@@ -119,7 +119,11 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
             />
             <div className="flex items-center gap-x-2">
               <Button disabled={!isValid || isSubmitting} type="submit">
-                Save
+                {isSubmitting ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <span>Save</span>
+                )}
               </Button>
             </div>
           </form>

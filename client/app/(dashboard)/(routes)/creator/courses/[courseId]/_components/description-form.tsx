@@ -4,7 +4,7 @@ import { toast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Course } from "@prisma/client";
 import axios from "axios";
-import { Pencil } from "lucide-react";
+import { Loader2, Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -55,7 +55,7 @@ export const DescriptionForm = ({
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
       toast({
-        title: "Success! Course updated.",
+        title: "Success! Course description updated.",
         description: "Double check the course description for any typos.",
         variant: "success",
       });
@@ -120,7 +120,11 @@ export const DescriptionForm = ({
             />
             <div className="flex items-center gap-x-2">
               <Button disabled={!isValid || isSubmitting} type="submit">
-                Save
+                {isSubmitting ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <span>Save</span>
+                )}
               </Button>
             </div>
           </form>

@@ -102,7 +102,7 @@ const CreatePage = () => {
                 disabled={!isValid || isSubmitting}
               >
                 {isSubmitting ? (
-                  <Loader2 className="w-4 h-4 animate-spin mx-[1.395rem]" />
+                  <Loader2 className="w-4 h-4 animate-spin" />
                 ) : (
                   <span>Continue</span>
                 )}

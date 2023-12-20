@@ -40,7 +40,7 @@ export const ChapterVideoForm = ({
         values
       );
       toast({
-        title: "Success! Chapter updated.",
+        title: "Success! Chapter video updated.",
         description: "Double check your recent updates for any mistakes.",
         variant: "success",
       });
@@ -77,7 +77,7 @@ export const ChapterVideoForm = ({
       </div>
       {!isEditing &&
         (!initialData.videoUrl ? (
-          <div className="flex items-center justify-center h-60 bg-muted rounded-md">
+          <div className="flex items-center justify-center h-60 bg-background m-4 rounded-md">
             <Video className="h-10 w-10 text-muted-foreground" />
           </div>
         ) : (

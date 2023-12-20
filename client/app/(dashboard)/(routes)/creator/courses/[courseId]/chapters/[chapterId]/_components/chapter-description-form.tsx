@@ -4,12 +4,14 @@ import { toast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Chapter } from "@prisma/client";
 import axios from "axios";
-import { Pencil } from "lucide-react";
+import { Loader2, Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { Editor } from "@/components/editor";
+import { Preview } from "@/components/preview";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -57,7 +59,7 @@ export const ChapterDescriptionForm = ({
         values
       );
       toast({
-        title: "Success! Chapter updated.",
+        title: "Success! Chapter description updated.",
         description: "Double check your recent updates for any mistakes.",
         variant: "success",
       });
@@ -94,10 +96,10 @@ export const ChapterDescriptionForm = ({
             !initialData.description && "text-muted-foreground italic"
           )}
         >
-          {/* {!initialData.description && "No description"}
+          {!initialData.description && "No description"}
           {initialData.description && (
             <Preview value={initialData.description} />
-          )} */}
+          )}
         </div>
       )}
       {isEditing && (
@@ -111,14 +113,20 @@ export const ChapterDescriptionForm = ({
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormControl>{/* <Editor {...field} /> */}</FormControl>
+                  <FormControl>
+                    <Editor {...field} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <div className="flex items-center gap-x-2">
               <Button disabled={!isValid || isSubmitting} type="submit">
-                Save
+                {isSubmitting ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <span>Save</span>
+                )}
               </Button>
             </div>
           </form>

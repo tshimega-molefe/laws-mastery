@@ -22,7 +22,6 @@ const AnalyticsPage = async () => {
         <DataCard label="Total Sales" value={totalSales} />
       </div>
       <Chart data={data} />
-      Analytics Page
     </div>
   );
 };

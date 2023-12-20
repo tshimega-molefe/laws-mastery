@@ -56,7 +56,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
       await axios.post(`/api/courses/${courseId}/chapters`, values);
       toast({
         title: "Success! Chapter created.",
-        description: "Double check your recent updates for any mistakes.",
+        description: "Double check the chapter title for any typos.",
         variant: "success",
       });
       toggleCreating();
@@ -102,7 +102,7 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
     <div className="relative mt-6 border bg-muted rounded-md p-4">
       {isUpdating && (
         <div className="absolute h-full w-full bg-secondary/20 top-0 right-0 rounded-m flex items-center justify-center">
-          <Loader2 className="animate-spin h-6 w-6 text-muted-foreground" />
+          <Loader2 className="animate-spin h-4 w-4 text-muted-foreground" />
         </div>
       )}
       <div className="font-medium flex items-center justify-between">
@@ -142,7 +142,11 @@ export const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
               )}
             />
             <Button disabled={!isValid || isSubmitting} type="submit">
-              Create
+              {isSubmitting ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <span>Create</span>
+              )}
             </Button>
           </form>
         </Form>

@@ -3,7 +3,7 @@
 import { toast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { Pencil } from "lucide-react";
+import { Loader2, Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -56,7 +56,7 @@ export const ChapterTitleForm = ({
         values
       );
       toast({
-        title: "Success! Chapter updated.",
+        title: "Success! Chapter title updated.",
         description: "Double check your recent updates for any mistakes.",
         variant: "success",
       });
@@ -101,7 +101,8 @@ export const ChapterTitleForm = ({
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Introduction to the course'"
+                      placeholder="e.g. 'Introduction to the Cryptocurrency'"
+                      className="border-muted-foreground"
                       {...field}
                     />
                   </FormControl>
@@ -111,7 +112,11 @@ export const ChapterTitleForm = ({
             />
             <div className="flex items-center gap-x-2">
               <Button disabled={!isValid || isSubmitting} type="submit">
-                Save
+                {isSubmitting ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <span>Save</span>
+                )}
               </Button>
             </div>
           </form>
