@@ -13,6 +13,7 @@ interface FileUploadProps {
 export const FileUpload = ({ onChange, endpoint }: FileUploadProps) => {
   return (
     <UploadDropzone
+      className="md:py-12 border-muted-foreground"
       endpoint={endpoint}
       onClientUploadComplete={(res) => {
         onChange(res?.[0].url);
