@@ -59,7 +59,7 @@ export const ChapterAccessForm = ({
         values
       );
       toast({
-        title: "Success! Chapter updated.",
+        title: "Success! Chapter access updated.",
         description: "Double check your recent updates for any mistakes.",
         variant: "success",
       });

@@ -27,7 +27,7 @@ export const CourseCard = ({
 }: CourseCardProps) => {
   return (
     <Link href={`/courses/${id}`}>
-      <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full">
+      <div className="group hover:shadow-sm transition duration-200 ease-out overflow-hidden border rounded-lg p-3 h-full">
         <div className="relative w-full aspect-video rounded-md overflow-hidden">
           <Image fill className="object-cover" alt={title} src={imageUrl} />
         </div>
@@ -37,7 +37,7 @@ export const CourseCard = ({
           </div>
           <p className="text-xs text-muted-foreground">{category}</p>
           <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
-            <div className="flex items-center gap-x-1 text-muted">
+            <div className="flex items-center gap-x-1 text-muted-foreground">
               <IconBadge size="sm" icon={BookOpen} />
               <span>
                 {chaptersLength} {chaptersLength === 1 ? "Chapter" : "Chapters"}
@@ -51,7 +51,7 @@ export const CourseCard = ({
               value={progress}
             />
           ) : (
-            <p className="text-md md:text-sm font-medium text-muted-foreground">
+            <p className="text-md md:text-sm font-light text-muted-foreground">
               {formatPrice(price)}
             </p>
           )}

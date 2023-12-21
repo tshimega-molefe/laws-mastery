@@ -94,7 +94,11 @@ export const ChapterActions = ({
         variant="outline"
         size="sm"
       >
-        {isPublished ? "Unpublish" : "Publish"}
+        {isPublished ? (
+          <span className="text-destructive dark:text-red-600">Unpublish</span>
+        ) : (
+          <span className="bg-emerald-600 hover:bg-emerald-500">Publish</span>
+        )}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
         <Button size="sm" disabled={isLoading} variant="destructive">

@@ -34,7 +34,7 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
       toast({
-        title: "Success! Course updated.",
+        title: "Success! Course image updated.",
         description: "Double check the course image aspect ratio.",
         variant: "success",
       });

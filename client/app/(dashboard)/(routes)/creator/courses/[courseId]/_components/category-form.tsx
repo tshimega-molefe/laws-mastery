@@ -55,7 +55,7 @@ export const CategoryForm = ({
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
       toast({
-        title: "Success! Course updated.",
+        title: "Success! Course categories updated.",
         description: "Double check your recent updates for any mistakes.",
         variant: "success",
       });

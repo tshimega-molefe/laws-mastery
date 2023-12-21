@@ -86,7 +86,11 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
         variant="outline"
         size="sm"
       >
-        {isPublished ? "Unpublish" : "Publish"}
+        {isPublished ? (
+          <span className="text-destructive dark:text-red-600">Unpublish</span>
+        ) : (
+          <span className="text-emerald-600 dark:text-success">Publish</span>
+        )}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
         <Button size="sm" disabled={isLoading} variant="destructive">

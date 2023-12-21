@@ -35,7 +35,7 @@ export const AttachmentForm = ({
     try {
       await axios.post(`/api/courses/${courseId}/attachments`, values);
       toast({
-        title: "Success! Course updated.",
+        title: "Success! Course attachments updated.",
         description: "Double check your recent updates for any mistakes.",
         variant: "success",
       });

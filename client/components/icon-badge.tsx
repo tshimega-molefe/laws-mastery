@@ -8,7 +8,7 @@ const backgroundVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-amber-200/40 dark:bg-amber-100/90",
+        default: "bg-amber-200/40 dark:bg-amber-200/90",
         success: "bg-emerald-200 dark:bg-emerald-400",
       },
       size: {
