@@ -1,11 +1,11 @@
-import { getCourses } from "@/actions/get-courses";
-import { CoursesList } from "@/components/courses-list";
 import { SearchInput } from "@/components/search-input";
 import { db } from "@/lib/db";
 
-import { Categories } from "./_components/categories";
-import { WelcomeCoursesList } from "@/components/welcome-course-list";
 import { getWelcomeCourses } from "@/actions/get-welcome-courses";
+import { WelcomeCoursesList } from "@/components/welcome-course-list";
+import { Categories } from "./_components/categories";
+import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 interface SearchPageProps {
   searchParams: {
@@ -15,6 +15,12 @@ interface SearchPageProps {
 }
 
 const WelcomePage = async ({ searchParams }: SearchPageProps) => {
+  const { userId } = auth();
+
+  if (userId) {
+    return redirect("/");
+  }
+
   const categories = await db.category.findMany({
     orderBy: {
       name: "asc",
