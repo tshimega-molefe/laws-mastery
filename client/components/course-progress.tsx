@@ -8,7 +8,7 @@ interface CourseProgressProps {
 }
 
 const colorByVariant = {
-  default: "text-muted",
+  default: "text-muted-foreground",
   success: "text-emerald-700",
 };
 

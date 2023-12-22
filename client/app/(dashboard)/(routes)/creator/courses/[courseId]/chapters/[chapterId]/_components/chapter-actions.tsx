@@ -2,7 +2,7 @@
 
 import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
-import { Trash } from "lucide-react";
+import { Loader2, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -68,7 +68,7 @@ export const ChapterActions = ({
       await axios.delete(`/api/courses/${courseId}/chapters/${chapterId}`);
 
       toast({
-        title: "Success! Chapter deleted.",
+        title: "Warning! Chapter deleted.",
         description:
           "If this was accidental, please readd the chapter content.",
         variant: "destructive",
@@ -95,9 +95,25 @@ export const ChapterActions = ({
         size="sm"
       >
         {isPublished ? (
-          <span className="text-destructive dark:text-red-600">Unpublish</span>
+          <>
+            {isLoading ? (
+              <Loader2 className="w-4 h-4 animate-spin text-destructive" />
+            ) : (
+              <span className="text-destructive dark:text-red-600 hover:text-red-500">
+                Unpublish
+              </span>
+            )}
+          </>
         ) : (
-          <span className="bg-emerald-600 hover:bg-emerald-500">Publish</span>
+          <>
+            {isLoading ? (
+              <Loader2 className="w-4 h-4 animate-spin text-emerald-600 dark:text-success" />
+            ) : (
+              <span className="text-emerald-600 dark:text-success hover:text-emerald-500">
+                Publish
+              </span>
+            )}
+          </>
         )}
       </Button>
       <ConfirmModal onConfirm={onDelete}>

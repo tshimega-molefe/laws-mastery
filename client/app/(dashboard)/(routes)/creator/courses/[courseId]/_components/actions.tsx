@@ -2,7 +2,7 @@
 
 import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
-import { Trash } from "lucide-react";
+import { Loader2, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -87,9 +87,25 @@ export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
         size="sm"
       >
         {isPublished ? (
-          <span className="text-destructive dark:text-red-600">Unpublish</span>
+          <>
+            {isLoading ? (
+              <Loader2 className="w-4 h-4 animate-spin text-destructive" />
+            ) : (
+              <span className="text-destructive dark:text-red-600 hover:text-red-500">
+                Unpublish
+              </span>
+            )}
+          </>
         ) : (
-          <span className="text-emerald-600 dark:text-success">Publish</span>
+          <>
+            {isLoading ? (
+              <Loader2 className="w-4 h-4 animate-spin text-emerald-600 dark:text-success" />
+            ) : (
+              <span className="text-emerald-600 dark:text-success hover:text-emerald-500">
+                Publish
+              </span>
+            )}
+          </>
         )}
       </Button>
       <ConfirmModal onConfirm={onDelete}>

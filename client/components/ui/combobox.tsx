@@ -55,7 +55,6 @@ export const Combobox = ({ options, value, onChange }: ComboboxProps) => {
                   setOpen(false);
                 }}
               >
-                kk
                 <Check
                   className={cn(
                     "mr-2 h-4 w-4",

@@ -69,7 +69,7 @@ export const CourseProgressButton = ({
       onClick={onClick}
       disabled={isLoading}
       type="button"
-      variant={isCompleted ? "outline" : "default"} // TODO: Return to make this a defauly, or mark as success button
+      variant={isCompleted ? "outline" : "default"} // TODO: Return to make this a default, or mark as success button
       className="w-full md:w-auto"
     >
       {isCompleted ? "Not completed" : "Mark as complete"}
