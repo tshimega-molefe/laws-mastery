@@ -4,6 +4,15 @@ import { BarChart, Compass, Layout, List } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { SidebarItem } from "./sidebar-item";
+import { auth } from "@clerk/nextjs";
+
+const welcomeRoutes = [
+  {
+    icon: Compass,
+    label: "Explore",
+    href: "/welcome",
+  },
+];
 
 const guestRoutes = [
   {
@@ -34,9 +43,17 @@ const creatorRoutes = [
 export const SidebarRoutes = () => {
   const pathname = usePathname();
 
+  const isWelcomePage = pathname?.includes("/welcome");
+
   const isCreatorPage = pathname?.includes("/creator");
 
-  const routes = isCreatorPage ? creatorRoutes : guestRoutes;
+  let routes;
+
+  if (isWelcomePage) {
+    routes = welcomeRoutes;
+  } else {
+    routes = isCreatorPage ? creatorRoutes : guestRoutes;
+  }
 
   return (
     <div className="flex flex-col w-full px-3 gap-y-2">

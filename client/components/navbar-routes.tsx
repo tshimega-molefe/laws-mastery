@@ -5,7 +5,7 @@ import { LogOut, Upload } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { isCreator } from "@/lib/creator";
 
 import { SearchInput } from "./search-input";
@@ -17,18 +17,27 @@ export const NavbarRoutes = () => {
 
   const isCreatorPage = pathname?.startsWith("/creator");
   const isCoursePage = pathname?.includes("/courses");
+  const isWelcomePage = pathname === "/welcome";
   const isSearchPage = pathname === "/search";
 
   return (
     <>
-      {isSearchPage && (
-        <div className="hidden md:block">
-          <SearchInput />
-        </div>
-      )}
+      {isSearchPage ||
+        (isWelcomePage && (
+          <div className="hidden md:block">
+            <SearchInput />
+          </div>
+        ))}
       <div className="flex gap-x-2 ml-auto items-center">
         <ThemeToggle />
-        {isCreatorPage || isCoursePage ? (
+        {isWelcomePage ? (
+          <Link
+            className={buttonVariants({ variant: "default" })}
+            href="/sign-in"
+          >
+            Sign In
+          </Link>
+        ) : isCreatorPage || isCoursePage ? (
           <Link href="/">
             <Button size="sm" variant="ghost">
               <LogOut className="h-4 w-4 mr-2" />

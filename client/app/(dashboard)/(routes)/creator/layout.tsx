@@ -6,7 +6,7 @@ const CreatorLayout = ({ children }: { children: React.ReactNode }) => {
   const { userId } = auth();
 
   if (!isCreator(userId)) {
-    return redirect("/");
+    return redirect("/welcome");
   }
 
   return <>{children}</>;
